@@ -7,20 +7,19 @@
 // LinkDef.h
 #ifdef __CINT__
 
-#pragma link C++ class Neutrino+;
-#pragma link C++ class AnotherBranch+;
+#pragma link C++ class g++ GSimpleNtpEntry+;
 
 #endif
 ```
 
 - Generate the dictionary
 ```
-rootcling -f NeutrinoDict.cxx -c Neutrino.h LinkDef.h
+rootcling -f GSimpleNtpEntryDict.cxx -c GSimpleNtpEntry.h LinkDef.h
 ```
 
 - Compile script (you made need to repeat the above step if you have altered Neutrino):
 ```
-g++ NeutrinoDict.cxx GSimple_LArSoftConvert.C -o GSimple_LArSoftConvert `root-config --cflags --libs`
+g++ GSimpleNtpEntryDict.cxx GSimple_LArSoftConvert.C -o GSimple_LArSoftConvert `root-config --cflags --libs`
 ```
 
 - Execute script (amend path to input files to whatever you are using)
