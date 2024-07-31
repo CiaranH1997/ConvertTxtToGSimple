@@ -11,7 +11,7 @@ namespace genie {
 
         class GSimpleNtpMeta : public TObject {
         public:
-            //std::vector<int>* pdglist;
+            std::vector<int> pdglist;
             double maxEnergy;
             double minWgt;
             double maxWgt;
@@ -19,11 +19,9 @@ namespace genie {
 	    double windowBase[3];
 	    double windowDir1[3];
 	    double windowDir2[3];
-            //std::vector<std::string>* infiles;
+            std::vector<std::string> infiles;
 	    int metakey;
 
-            //GSimpleNtpMeta() : pdglist(new std::vector<int>()), maxEnergy(0), minWgt(0), maxWgt(0), protons(0), infiles(new std::vector<std::string>()), metakey(0) {
-            //GSimpleNtpMeta() : pdglist(new std::vector<int>()), maxEnergy(0), minWgt(0), maxWgt(0), protons(0), metakey(0) {
             GSimpleNtpMeta() : maxEnergy(0), minWgt(0), maxWgt(0), protons(0), metakey(0) {
 	        for (int i = 0; i < 3; ++i) {
 	            windowBase[i] = 0.0;
@@ -34,12 +32,10 @@ namespace genie {
             
 	    // copy constructor
 	    GSimpleNtpMeta(const GSimpleNtpMeta& other)
-                : //pdglist(new std::vector<int>(*other.pdglist)),
-                  maxEnergy(other.maxEnergy),
+                : maxEnergy(other.maxEnergy),
                   minWgt(other.minWgt),
                   maxWgt(other.maxWgt),
                   protons(other.protons),
-                  //infiles(new std::vector<std::string>(*other.infiles)),
                   metakey(other.metakey) 
             {
 	        for (int i = 0; i < 3; ++i) {
@@ -55,12 +51,12 @@ namespace genie {
 		    return *this; // Handle self-assignmen
 		}
 
-		//*pdglist = *other.pdglist;
+		pdglist = other.pdglist;
 	        maxEnergy = other.maxEnergy;
 	        minWgt = other.minWgt;
 	        maxWgt = other.maxWgt;
 	        protons = other.protons;
-	        //*infiles = *other.infiles;
+	        infiles = other.infiles;
 	        metakey = other.metakey;
 
 	        for (int i = 0; i < 3; ++i) {
@@ -72,12 +68,7 @@ namespace genie {
                 return *this;
 	    }
 
-            virtual ~GSimpleNtpMeta() {
-                //pdglist->clear();
-		//infiles->clear();
-	        //delete pdglist;
-		//delete infiles;
-	    }
+            virtual ~GSimpleNtpMeta() {}
 
             ClassDef(GSimpleNtpMeta, 2);
         };
@@ -86,3 +77,4 @@ namespace genie {
 } // genie
 
 #endif
+

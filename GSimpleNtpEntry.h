@@ -17,6 +17,9 @@ namespace genie {
             double vtxx;
             double vtxy;
             double vtxz;
+            double haddec_x;
+            double haddec_y;
+            double haddec_z;
 	    double dist;
             double theta;
             double phi;
@@ -25,7 +28,10 @@ namespace genie {
             double pot_f;
 	    int metakey;
 
-            GSimpleNtpEntry() : pdg(0), E(0), wgt(0), px(0), py(0), pz(0), vtxx(0), vtxy(0), vtxz(0), dist(0), theta(0), phi(0), width_p(0), br_p(0), pot_f(0), metakey(0) {}
+            GSimpleNtpEntry() : pdg(0), E(0), wgt(0), px(0), py(0), pz(0), vtxx(0), vtxy(0), 
+	    vtxz(0), haddec_x(0), haddec_y(0), haddec_z(0), dist(0), theta(0), phi(0), 
+	    width_p(0), br_p(0), pot_f(0), metakey(0) {}
+
             virtual ~GSimpleNtpEntry() {}
 
             ClassDef(GSimpleNtpEntry, 1);

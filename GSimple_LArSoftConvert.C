@@ -3,11 +3,17 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <math.h> 
 #include "TFile.h"
 #include "TTree.h"
 #include "TRandom3.h"
 #include "GSimpleNtpEntry.h"
 #include "GSimpleNtpMeta.h"
+
+// Executable for converting flux text files to GSimple files that are compatible with GENIE in LArSoft
+
+// A lot of assumptions used to get creat a flux window and assess the vtx position of the neutrino ray
+// origin on that flux window.
 
 using namespace genie::flux;
 
@@ -30,11 +36,32 @@ std::vector<GSimpleNtpEntry> readGsimpleFile(const std::string& filename, int pd
 
         std::istringstream iss(line);
         GSimpleNtpEntry nu;
-        iss >> nu.vtxx >> nu.vtxy >> nu.vtxz >> nu.px >> nu.py >> nu.pz >> nu.E >> nu.theta >> nu.phi >> nu.width_p >> nu.br_p >> nu.pot_f;
+	double haddec_x, haddec_y, haddec_z;
+        iss >> nu.haddec_x >> nu.haddec_y >> nu.haddec_z >> nu.px >> nu.py >> nu.pz >> nu.E >> nu.theta >> nu.phi >> nu.width_p >> nu.br_p >> nu.pot_f;
         nu.pdg = pdg;
+	// Should I be doing something with the weights? Like weighting for the branching ratio? Probably...
         //nu.wgt = nu.br_p / (surface * nu.pot_f);
         nu.wgt = 1;
-	nu.dist = 714.;
+	// separation between T2 and NP04 centre is 723m, but dist is to flux window, so go ~4m back - very rough!
+	nu.dist = 719. - haddec_z;
+
+	double r = nu.dist / std::cos(nu.theta);
+	// Displacement between beam and and neutrino at window
+	double x_beamdisp = r*std::sin(nu.theta)*std::cos(nu.phi - 0.5*M_PI) + haddec_x;
+	double y_beamdisp = r*std::sin(nu.theta)*std::sin(nu.phi - 0.5*M_PI) + haddec_y;
+	// Convert displacement from beam to detector coordinates
+	// beam axis displacement is [x, y] = (-7.5, 0) - transform by this
+	double det_beam_disp_x = 7/2;
+	double det_beam_disp_y = 0.;
+	nu.vtxx = x_beamdisp - det_beam_disp_x;
+	nu.vtxy = y_beamdisp - det_beam_disp_y;
+	// In detector coords, y-origin is at the bottom of the detector, so shift vtxy up by 3m
+	nu.vtxy += 3.;
+	// beam window placed at z = -2. It is flat perpendicular to beam and parallel to
+	// front face of ProtoDUNE. Assumption as angular distribution of neutrinos is very tight.
+	// WARNING: be careful to change if flux woindow changes!
+	nu.vtxz = -2.;
+
 	nu.metakey = (int)random_metakey;
         neutrinos.push_back(nu);
     }
@@ -57,34 +84,36 @@ GSimpleNtpMeta buildFileMetaData(const std::string& filename, const std::vector<
         vWgt.push_back(n.wgt);
     }
 
-    //ret.pdglist = std::vector<std::string>;//{12, 14};
-    //ret.pdglist->push_back(12);
-    //ret.pdglist->push_back(14);
+    ret.pdglist.push_back(12);
+    ret.pdglist.push_back(14);
     ret.maxEnergy = *std::max_element(vE.begin(), vE.end());
     ret.minWgt = *std::min_element(vWgt.begin(), vWgt.end());
     ret.maxWgt = *std::max_element(vWgt.begin(), vWgt.end());
     vE.clear();
     vWgt.clear();
     ret.protons = neutrinos.at(0).pot_f;
-    //ret.windowBase = {-3.96 , -7.75374 , -0.403882};
-    //ret.windowDir1 = {0 , 14.8073 , -1.50065};
-    //ret.windowDir2 = {7.92 , 0 , 0};
-    ret.windowBase[0] = -3.96;
-    ret.windowBase[1] = -7.75374;
-    ret.windowBase[2] = -0.403882;
-    ret.windowDir1[0] = 0;
-    ret.windowDir1[1] = 14.8073;
-    ret.windowDir1[2] = -1.50065;
-    ret.windowDir2[0] = 7.92;
-    ret.windowDir2[1] = 0.;
-    ret.windowDir2[2] = 0.;
-    //ret.infiles->push_back(filename);
+    // ### Start Flux Window ###
+    // Guess a flux window (det. coordinates)
+    // 10m wide and 10m tall positioned ~2m upstream from cryostat wall
+    // Hopefully this is good enough for now
+    // Assume that all the neutrinos are already perpendicular to detector front face - this 
+    // means that the flux window is parallel to detector front face - maybe an okay assumption
+    ret.windowBase[0] = -5.;
+    ret.windowBase[1] = -1.;
+    ret.windowBase[2] = -2.;
+    ret.windowDir1[0] = -5.;
+    ret.windowDir1[1] = 9.;
+    ret.windowDir1[2] = -2.;
+    ret.windowDir2[0] = 5.;
+    ret.windowDir2[1] = -1.;
+    ret.windowDir2[2] = -2.;
+    // #### End Flux Window ###
+    ret.infiles.push_back(filename);
     ret.metakey = neutrinos.at(0).metakey;
 
     return ret;
 }
 
-//void writeRootFile(const std::string& filename, const std::vector<GSimpleNtpEntry>& neutrinos) {
 void writeRootFile(const std::string& filename, const std::vector<GSimpleNtpEntry>& neutrinos, const std::vector<GSimpleNtpMeta>& metas) {
     TFile* file = new TFile(filename.c_str(), "RECREATE");
     
