@@ -10,7 +10,7 @@
 #include <string.h>
 #include <assert.h>
 #define G__DICTIONARY
-#include "RConfig.h"
+#include "ROOT/RConfig.hxx"
 #include "TClass.h"
 #include "TDictAttributeMap.h"
 #include "TInterpreter.h"
@@ -125,10 +125,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::genie::flux::GSimpleNtpEntry*)
    {
-      return GenerateInitInstanceLocal((::genie::flux::GSimpleNtpEntry*)nullptr);
+      return GenerateInitInstanceLocal(static_cast<::genie::flux::GSimpleNtpEntry*>(nullptr));
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::genie::flux::GSimpleNtpEntry*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::genie::flux::GSimpleNtpEntry*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -157,10 +157,10 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::genie::flux::GSimpleNtpMeta*)
    {
-      return GenerateInitInstanceLocal((::genie::flux::GSimpleNtpMeta*)nullptr);
+      return GenerateInitInstanceLocal(static_cast<::genie::flux::GSimpleNtpMeta*>(nullptr));
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::genie::flux::GSimpleNtpMeta*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::genie::flux::GSimpleNtpMeta*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 namespace genie {
@@ -267,14 +267,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_geniecLcLfluxcLcLGSimpleNtpEntry(void *p) {
-      delete ((::genie::flux::GSimpleNtpEntry*)p);
+      delete (static_cast<::genie::flux::GSimpleNtpEntry*>(p));
    }
    static void deleteArray_geniecLcLfluxcLcLGSimpleNtpEntry(void *p) {
-      delete [] ((::genie::flux::GSimpleNtpEntry*)p);
+      delete [] (static_cast<::genie::flux::GSimpleNtpEntry*>(p));
    }
    static void destruct_geniecLcLfluxcLcLGSimpleNtpEntry(void *p) {
       typedef ::genie::flux::GSimpleNtpEntry current_t;
-      ((current_t*)p)->~current_t();
+      (static_cast<current_t*>(p))->~current_t();
    }
 } // end of namespace ROOT for class ::genie::flux::GSimpleNtpEntry
 
@@ -304,14 +304,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_geniecLcLfluxcLcLGSimpleNtpMeta(void *p) {
-      delete ((::genie::flux::GSimpleNtpMeta*)p);
+      delete (static_cast<::genie::flux::GSimpleNtpMeta*>(p));
    }
    static void deleteArray_geniecLcLfluxcLcLGSimpleNtpMeta(void *p) {
-      delete [] ((::genie::flux::GSimpleNtpMeta*)p);
+      delete [] (static_cast<::genie::flux::GSimpleNtpMeta*>(p));
    }
    static void destruct_geniecLcLfluxcLcLGSimpleNtpMeta(void *p) {
       typedef ::genie::flux::GSimpleNtpMeta current_t;
-      ((current_t*)p)->~current_t();
+      (static_cast<current_t*>(p))->~current_t();
    }
 } // end of namespace ROOT for class ::genie::flux::GSimpleNtpMeta
 
@@ -341,15 +341,15 @@ namespace ROOT {
       instance.SetDestructor(&destruct_vectorlEstringgR);
       instance.AdoptCollectionProxyInfo(TCollectionProxyInfo::Generate(TCollectionProxyInfo::Pushback< vector<string> >()));
 
-      ::ROOT::AddClassAlternate("vector<string>","std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >");
+      instance.AdoptAlternate(::ROOT::AddClassAlternate("vector<string>","std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >"));
       return &instance;
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const vector<string>*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const vector<string>*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
 
    // Dictionary for non-ClassDef classes
    static TClass *vectorlEstringgR_Dictionary() {
-      TClass* theClass =::ROOT::GenerateInitInstanceLocal((const vector<string>*)nullptr)->GetClass();
+      TClass* theClass =::ROOT::GenerateInitInstanceLocal(static_cast<const vector<string>*>(nullptr))->GetClass();
       vectorlEstringgR_TClassManip(theClass);
    return theClass;
    }
@@ -369,14 +369,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_vectorlEstringgR(void *p) {
-      delete ((vector<string>*)p);
+      delete (static_cast<vector<string>*>(p));
    }
    static void deleteArray_vectorlEstringgR(void *p) {
-      delete [] ((vector<string>*)p);
+      delete [] (static_cast<vector<string>*>(p));
    }
    static void destruct_vectorlEstringgR(void *p) {
       typedef vector<string> current_t;
-      ((current_t*)p)->~current_t();
+      (static_cast<current_t*>(p))->~current_t();
    }
 } // end of namespace ROOT for class vector<string>
 
@@ -406,15 +406,15 @@ namespace ROOT {
       instance.SetDestructor(&destruct_vectorlEintgR);
       instance.AdoptCollectionProxyInfo(TCollectionProxyInfo::Generate(TCollectionProxyInfo::Pushback< vector<int> >()));
 
-      ::ROOT::AddClassAlternate("vector<int>","std::vector<int, std::allocator<int> >");
+      instance.AdoptAlternate(::ROOT::AddClassAlternate("vector<int>","std::vector<int, std::allocator<int> >"));
       return &instance;
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const vector<int>*)nullptr); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const vector<int>*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
 
    // Dictionary for non-ClassDef classes
    static TClass *vectorlEintgR_Dictionary() {
-      TClass* theClass =::ROOT::GenerateInitInstanceLocal((const vector<int>*)nullptr)->GetClass();
+      TClass* theClass =::ROOT::GenerateInitInstanceLocal(static_cast<const vector<int>*>(nullptr))->GetClass();
       vectorlEintgR_TClassManip(theClass);
    return theClass;
    }
@@ -434,14 +434,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_vectorlEintgR(void *p) {
-      delete ((vector<int>*)p);
+      delete (static_cast<vector<int>*>(p));
    }
    static void deleteArray_vectorlEintgR(void *p) {
-      delete [] ((vector<int>*)p);
+      delete [] (static_cast<vector<int>*>(p));
    }
    static void destruct_vectorlEintgR(void *p) {
       typedef vector<int> current_t;
-      ((current_t*)p)->~current_t();
+      (static_cast<current_t*>(p))->~current_t();
    }
 } // end of namespace ROOT for class vector<int>
 
@@ -453,7 +453,7 @@ namespace {
 nullptr
     };
     static const char* includePaths[] = {
-"/cvmfs/larsoft.opensciencegrid.org/products/root/v6_26_06b/Linux64bit+3.10-2.17-e26-p3913-prof/include/",
+"/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////cvmfs/larsoft.opensciencegrid.org/spack-packages/opt/spack/linux-almalinux9-x86_64_v2/gcc-12.2.0/root-6.28.12-sfwfmqorvxttrxgfrfhoq5kplou2pddd/include/root",
 "/exp/dune/app/users/chasnip/CERN_Fellowship/ConvertTxtToGSimple/",
 nullptr
     };

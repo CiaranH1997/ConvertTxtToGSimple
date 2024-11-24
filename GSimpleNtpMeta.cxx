@@ -1,7 +1,7 @@
 #include "GSimpleNtpMeta.h"
 
 namespace genie {
-    namespace flux {
-        ClassImp(GSimpleNtpMeta);
-    } // flux
+  namespace flux {
+    ClassImp(GSimpleNtpMeta);
+  } // flux
 } // genie
