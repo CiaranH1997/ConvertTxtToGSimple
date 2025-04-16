@@ -37,6 +37,7 @@
 // Header files passed as explicit arguments
 #include "GSimpleNtpEntry.h"
 #include "GSimpleNtpMeta.h"
+#include "NeutrinoFileID.h"
 
 // Header files passed via #pragma extra_include
 
@@ -163,6 +164,38 @@ namespace ROOT {
    static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::genie::flux::GSimpleNtpMeta*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
+namespace ROOT {
+   static void *new_geniecLcLfluxcLcLNeutrinoFileID(void *p = nullptr);
+   static void *newArray_geniecLcLfluxcLcLNeutrinoFileID(Long_t size, void *p);
+   static void delete_geniecLcLfluxcLcLNeutrinoFileID(void *p);
+   static void deleteArray_geniecLcLfluxcLcLNeutrinoFileID(void *p);
+   static void destruct_geniecLcLfluxcLcLNeutrinoFileID(void *p);
+
+   // Function generating the singleton type initializer
+   static TGenericClassInfo *GenerateInitInstanceLocal(const ::genie::flux::NeutrinoFileID*)
+   {
+      ::genie::flux::NeutrinoFileID *ptr = nullptr;
+      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::genie::flux::NeutrinoFileID >(nullptr);
+      static ::ROOT::TGenericClassInfo 
+         instance("genie::flux::NeutrinoFileID", ::genie::flux::NeutrinoFileID::Class_Version(), "NeutrinoFileID.h", 15,
+                  typeid(::genie::flux::NeutrinoFileID), ::ROOT::Internal::DefineBehavior(ptr, ptr),
+                  &::genie::flux::NeutrinoFileID::Dictionary, isa_proxy, 4,
+                  sizeof(::genie::flux::NeutrinoFileID) );
+      instance.SetNew(&new_geniecLcLfluxcLcLNeutrinoFileID);
+      instance.SetNewArray(&newArray_geniecLcLfluxcLcLNeutrinoFileID);
+      instance.SetDelete(&delete_geniecLcLfluxcLcLNeutrinoFileID);
+      instance.SetDeleteArray(&deleteArray_geniecLcLfluxcLcLNeutrinoFileID);
+      instance.SetDestructor(&destruct_geniecLcLfluxcLcLNeutrinoFileID);
+      return &instance;
+   }
+   TGenericClassInfo *GenerateInitInstance(const ::genie::flux::NeutrinoFileID*)
+   {
+      return GenerateInitInstanceLocal(static_cast<::genie::flux::NeutrinoFileID*>(nullptr));
+   }
+   // Static variable to force the class initialization
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::genie::flux::NeutrinoFileID*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
+} // end of namespace ROOT
+
 namespace genie {
    namespace flux {
 //______________________________________________________________________________
@@ -244,6 +277,45 @@ TClass *GSimpleNtpMeta::Class()
 namespace genie {
    namespace flux {
 //______________________________________________________________________________
+atomic_TClass_ptr NeutrinoFileID::fgIsA(nullptr);  // static to hold class pointer
+
+//______________________________________________________________________________
+const char *NeutrinoFileID::Class_Name()
+{
+   return "genie::flux::NeutrinoFileID";
+}
+
+//______________________________________________________________________________
+const char *NeutrinoFileID::ImplFileName()
+{
+   return ::ROOT::GenerateInitInstanceLocal((const ::genie::flux::NeutrinoFileID*)nullptr)->GetImplFileName();
+}
+
+//______________________________________________________________________________
+int NeutrinoFileID::ImplFileLine()
+{
+   return ::ROOT::GenerateInitInstanceLocal((const ::genie::flux::NeutrinoFileID*)nullptr)->GetImplFileLine();
+}
+
+//______________________________________________________________________________
+TClass *NeutrinoFileID::Dictionary()
+{
+   fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::genie::flux::NeutrinoFileID*)nullptr)->GetClass();
+   return fgIsA;
+}
+
+//______________________________________________________________________________
+TClass *NeutrinoFileID::Class()
+{
+   if (!fgIsA.load()) { R__LOCKGUARD(gInterpreterMutex); fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::genie::flux::NeutrinoFileID*)nullptr)->GetClass(); }
+   return fgIsA;
+}
+
+} // namespace genie::flux
+} // namespace genie::flux
+namespace genie {
+   namespace flux {
+//______________________________________________________________________________
 void GSimpleNtpEntry::Streamer(TBuffer &R__b)
 {
    // Stream an object of class genie::flux::GSimpleNtpEntry.
@@ -314,6 +386,43 @@ namespace ROOT {
       (static_cast<current_t*>(p))->~current_t();
    }
 } // end of namespace ROOT for class ::genie::flux::GSimpleNtpMeta
+
+namespace genie {
+   namespace flux {
+//______________________________________________________________________________
+void NeutrinoFileID::Streamer(TBuffer &R__b)
+{
+   // Stream an object of class genie::flux::NeutrinoFileID.
+
+   if (R__b.IsReading()) {
+      R__b.ReadClassBuffer(genie::flux::NeutrinoFileID::Class(),this);
+   } else {
+      R__b.WriteClassBuffer(genie::flux::NeutrinoFileID::Class(),this);
+   }
+}
+
+} // namespace genie::flux
+} // namespace genie::flux
+namespace ROOT {
+   // Wrappers around operator new
+   static void *new_geniecLcLfluxcLcLNeutrinoFileID(void *p) {
+      return  p ? new(p) ::genie::flux::NeutrinoFileID : new ::genie::flux::NeutrinoFileID;
+   }
+   static void *newArray_geniecLcLfluxcLcLNeutrinoFileID(Long_t nElements, void *p) {
+      return p ? new(p) ::genie::flux::NeutrinoFileID[nElements] : new ::genie::flux::NeutrinoFileID[nElements];
+   }
+   // Wrapper around operator delete
+   static void delete_geniecLcLfluxcLcLNeutrinoFileID(void *p) {
+      delete (static_cast<::genie::flux::NeutrinoFileID*>(p));
+   }
+   static void deleteArray_geniecLcLfluxcLcLNeutrinoFileID(void *p) {
+      delete [] (static_cast<::genie::flux::NeutrinoFileID*>(p));
+   }
+   static void destruct_geniecLcLfluxcLcLNeutrinoFileID(void *p) {
+      typedef ::genie::flux::NeutrinoFileID current_t;
+      (static_cast<current_t*>(p))->~current_t();
+   }
+} // end of namespace ROOT for class ::genie::flux::NeutrinoFileID
 
 namespace ROOT {
    static TClass *vectorlEstringgR_Dictionary();
@@ -450,10 +559,11 @@ namespace {
     static const char* headers[] = {
 "GSimpleNtpEntry.h",
 "GSimpleNtpMeta.h",
+"NeutrinoFileID.h",
 nullptr
     };
     static const char* includePaths[] = {
-"/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////cvmfs/larsoft.opensciencegrid.org/spack-packages/opt/spack/linux-almalinux9-x86_64_v2/gcc-12.2.0/root-6.28.12-sfwfmqorvxttrxgfrfhoq5kplou2pddd/include/root",
+"/cvmfs/larsoft.opensciencegrid.org/products/root/v6_28_12/Linux64bit+3.10-2.17-e26-p3915-prof/include/",
 "/exp/dune/app/users/chasnip/CERN_Fellowship/ConvertTxtToGSimple/",
 nullptr
     };
@@ -465,6 +575,7 @@ nullptr
 extern int __Cling_AutoLoading_Map;
 namespace genie{namespace flux{class __attribute__((annotate("$clingAutoload$GSimpleNtpEntry.h")))  GSimpleNtpEntry;}}
 namespace genie{namespace flux{class __attribute__((annotate("$clingAutoload$GSimpleNtpMeta.h")))  GSimpleNtpMeta;}}
+namespace genie{namespace flux{class __attribute__((annotate("$clingAutoload$NeutrinoFileID.h")))  NeutrinoFileID;}}
 )DICTFWDDCLS";
     static const char* payloadCode = R"DICTPAYLOAD(
 #line 1 "GSimpleNtpDict dictionary payload"
@@ -474,12 +585,14 @@ namespace genie{namespace flux{class __attribute__((annotate("$clingAutoload$GSi
 // Inline headers
 #include "GSimpleNtpEntry.h"
 #include "GSimpleNtpMeta.h"
+#include "NeutrinoFileID.h"
 
 #undef  _BACKWARD_BACKWARD_WARNING_H
 )DICTPAYLOAD";
     static const char* classesHeaders[] = {
 "genie::flux::GSimpleNtpEntry", payloadCode, "@",
 "genie::flux::GSimpleNtpMeta", payloadCode, "@",
+"genie::flux::NeutrinoFileID", payloadCode, "@",
 nullptr
 };
     static bool isInitialized = false;

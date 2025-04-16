@@ -9,6 +9,7 @@
 #pragma link C++ namespace genie::flux;
 #pragma link C++ class genie::flux::GSimpleNtpEntry+;
 #pragma link C++ class genie::flux::GSimpleNtpMeta+;
+#pragma link C++ class genie::flux::NeutrinoFileID+;
 
 #endif
 

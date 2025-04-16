@@ -15,23 +15,27 @@
 #pragma link C++ namespace genie::flux;
 #pragma link C++ class genie::flux::GSimpleNtpEntry+;
 #pragma link C++ class genie::flux::GSimpleNtpMeta+;
+#pragma link C++ class genie::flux::NeutrinoFileID+;
 
 #endif
 ```
 
 - Generate the dictionary
 ```
-rootcling -f GSimpleNtpDict.cxx -c GSimpleNtpEntry.h GSimpleNtpMeta.h LinkDef.h
+rootcling -f GSimpleNtpDict.cxx -c GSimpleNtpEntry.h GSimpleNtpMeta.h NeutrinoFileID.h LinkDef.h
 
 ```
 
 - Compile script (you made need to repeat the above step if you have altered Neutrino):
 ```
-g++ GSimpleNtpDict.cxx GSimple_LArSoftConvert.C -o GSimple_LArSoftConvert `root-config --cflags --libs`
+g++ GSimpleNtpDict.cxx GSimple_LArSoftConvert.C NeutrinoFileID.cxx -o GSimple_LArSoftConvert `root-config --cflags --libs`
 ```
 
-- Execute script (amend path to input files to whatever you are using)
+Or just run the `build.sh` script to run the above two steps.
+
+- Execute script (amend path to input files and wobbling configuration to whatever you are using)
 ```
-./GSimple_LArSoftConvert /out/path/to/protodune_neutrinoflux.root ~/in/path/to/lightnu_fluxes_*
+./GSimple_LArSoftConvert $WOB /out/path/to/protodune_neutrinoflux.root ~/in/path/to/lightnu_fluxes_*
 ```
 
+There is a helper bash script for running the executable: `runNewProtoDUNEFluxProd.sh`.
