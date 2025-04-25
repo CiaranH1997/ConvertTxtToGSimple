@@ -79,7 +79,7 @@ void NeutrinoFileID::initialize_fileid(const std::string &file) {
     if (found_nu_decay0 != std::string::npos) {
       std::cout << "numu decay 0" << std::endl;
       hadron_decay = "130_3body";
-      br = 0.2704;
+      br = 0.2704 * 0.5; // 0.2704 is the BR to either numu or numubar
     } else if (found_nu_decay1 != std::string::npos) {
       std::cout << "numu decay 1" << std::endl;
       hadron_decay = "211_2body";
@@ -87,7 +87,7 @@ void NeutrinoFileID::initialize_fileid(const std::string &file) {
     } else if (found_nu_decay2 != std::string::npos) {
       std::cout << "numu decay 2" << std::endl;
       hadron_decay = "310_3body";
-      br = 4.56e-4;
+      br = 4.56e-4 * 0.5; // 4.56e-4 is the BR to either numu or numubar
     } else if (found_nu_decay3 != std::string::npos) {
       std::cout << "numu decay 3" << std::endl;
       hadron_decay = "321_2body";
@@ -101,7 +101,7 @@ void NeutrinoFileID::initialize_fileid(const std::string &file) {
     if (found_nu_decay0 != std::string::npos) {
       std::cout << "nue decay 0" << std::endl;
       hadron_decay = "130_3body";
-      br = 0.4055;
+      br = 0.4055 * 0.5; // 0.4055 is the BR to either nue or nuebar
     } else if (found_nu_decay1 != std::string::npos) {
       std::cout << "nue decay 1" << std::endl;
       hadron_decay = "211_2body";
@@ -109,7 +109,7 @@ void NeutrinoFileID::initialize_fileid(const std::string &file) {
     } else if (found_nu_decay2 != std::string::npos) {
       std::cout << "nue decay 2" << std::endl;
       hadron_decay = "310_3body";
-      br = 7.04e-4;
+      br = 7.14e-4 * 0.5; // 7.14e-4 is the BR to either nue or nuebar
     } else if (found_nu_decay3 != std::string::npos) {
       std::cout << "nue decay 3" << std::endl;
       hadron_decay = "321_2body";
