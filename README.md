@@ -35,7 +35,7 @@ Or just run the `build.sh` script to run the above two steps.
 
 - Execute script (amend path to input files and wobbling configuration to whatever you are using)
 ```
-./GSimple_LArSoftConvert $WOB /out/path/to/protodune_neutrinoflux.root ~/in/path/to/lightnu_fluxes_*
+./GSimple_LArSoftConvert $WOB $NOUTPUTS /out/path/to/protodune_neutrinoflux.root ~/in/path/to/lightnu_fluxes_*
 ```
 
-There is a helper bash script for running the executable: `runNewProtoDUNEFluxProd.sh`.
+There is a helper bash script for running the executable: `runNewProtoDUNEFluxProd.sh`. WOB is the wobbling configuration and NOUTPUTS is the number of output gsimple files to split the flux file into.
